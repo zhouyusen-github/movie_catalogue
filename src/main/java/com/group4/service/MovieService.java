@@ -9,4 +9,5 @@ public interface MovieService {
     public List<Movie> selectAllMovie();
     public void insertMovie(int id, String name, double revenue);
     public void updateMovie(int id, String newName, double newRevenue);
+    public void deleteMovie(int id);
 }

@@ -53,9 +53,6 @@ public class MovieController {
 
     @RequestMapping(value="/{id}",method = RequestMethod.DELETE)
     public void deleteMovie(@PathVariable("id") int id,HttpServletRequest request) {
-
-//        return id;
+        movieService.deleteMovie(id);
     }
-
-
 }

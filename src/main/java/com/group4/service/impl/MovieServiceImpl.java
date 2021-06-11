@@ -36,4 +36,10 @@ public class MovieServiceImpl implements MovieService {
         String sql = "UPDATE movie SET name = ?, revenue = ? WHERE id = ?";
         jdbcTemplate.update(sql, newName, newRevenue, id);
     }
+
+    @Override
+    public void deleteMovie(int id) {
+        String sql = "DELETE FROM movie WHERE id= ?";
+        jdbcTemplate.update(sql, id);
+    }
 }
