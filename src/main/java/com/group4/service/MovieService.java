@@ -7,6 +7,9 @@ import java.util.List;
 public interface MovieService {
     public List<Movie> selectByName(String name);
     public List<Movie> selectAllMovie();
+    public List<Movie> selectMovieName();
+    public List<Movie> selectMovieRevenue();
+    public List<Movie> selectMovieNameRevenue();
     public void insertMovie(int id, String name, double revenue);
     public void updateMovie(int id, String newName, double newRevenue);
     public void deleteMovie(int id);

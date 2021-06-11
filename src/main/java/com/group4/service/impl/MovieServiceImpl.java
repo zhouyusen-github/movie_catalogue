@@ -25,6 +25,21 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    public List<Movie> selectMovieName() {
+        return jdbcTemplate.query("SELECT name FROM movie",new BeanPropertyRowMapper<Movie>(Movie.class));
+    }
+
+    @Override
+    public List<Movie> selectMovieRevenue(){
+        return jdbcTemplate.query("SELECT revenue FROM movie",new BeanPropertyRowMapper<Movie>(Movie.class));
+    }
+
+    @Override
+    public List<Movie> selectMovieNameRevenue() {
+        return jdbcTemplate.query("SELECT name,revenue FROM movie",new BeanPropertyRowMapper<Movie>(Movie.class));
+    }
+
+    @Override
     public void insertMovie(int id, String name, double revenue) {
         String sql = "insert into movie value(?,?,?)";
         int rows = jdbcTemplate.update(sql, id, name, revenue);

@@ -26,9 +26,14 @@ public class MovieController {
                 result =movieService.selectByName(name);
             }
         } else {
+            if (fields.equals("name")) {
+                result = movieService.selectMovieName();
+            } else if (fields.equals("revenue")) {
+                result = movieService.selectMovieRevenue();
+            } else {
+                result = movieService.selectMovieNameRevenue();
+            }
         }
-
-
         return result;
     }
 
