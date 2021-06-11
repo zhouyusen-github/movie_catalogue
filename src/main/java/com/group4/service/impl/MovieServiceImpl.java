@@ -31,10 +31,9 @@ public class MovieServiceImpl implements MovieService {
         System.out.println("插入行数：" + rows);
     }
 
-//    @Override
-//    public void updateMovie(int id, int newId, String newName, double newRevenue) {
-//        String sql = "insert into movie value(?,?,?)";
-//        int rows = jdbcTemplate.update(sql, id, name, revenue);
-//        System.out.println("插入行数：" + rows);
-//    }
+    @Override
+    public void updateMovie(int id, String newName, double newRevenue) {
+        String sql = "UPDATE movie SET name = ?, revenue = ? WHERE id = ?";
+        jdbcTemplate.update(sql, newName, newRevenue, id);
+    }
 }

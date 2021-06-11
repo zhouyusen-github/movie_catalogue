@@ -43,14 +43,19 @@ public class MovieController {
         movieService.insertMovie(id, name, revenue);
     }
 
-    @RequestMapping(value="/{id}",method = RequestMethod.DELETE)
-    public String deleteMovie(@PathVariable("id") String id,HttpServletRequest request) {
-        return id;
+    @RequestMapping(value="/{id}",method = RequestMethod.PUT)
+    public void updateMovie(@PathVariable("id") int id,HttpServletRequest request) {
+        String newName=request.getParameter("name");
+        String newRevenueString=request.getParameter("revenue");
+        double newRevenue = Double.valueOf(newRevenueString);
+        movieService.updateMovie(id, newName, newRevenue);
     }
 
-    @RequestMapping(value="/{id}",method = RequestMethod.PUT)
-    public String updateMovie(@PathVariable("id") String id,HttpServletRequest request) {
-        String name=request.getParameter("name");
-        return id+name;
+    @RequestMapping(value="/{id}",method = RequestMethod.DELETE)
+    public void deleteMovie(@PathVariable("id") int id,HttpServletRequest request) {
+
+//        return id;
     }
+
+
 }
