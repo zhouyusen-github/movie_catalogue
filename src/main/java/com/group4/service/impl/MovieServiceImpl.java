@@ -7,13 +7,34 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MovieServiceImpl implements MovieService {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public Movie selectAllMovie(int id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM movie WHERE id=?", new Object[] { id }, new BeanPropertyRowMapper<Movie>(Movie.class));
+    public List<Movie> selectByName(String name) {
+        return jdbcTemplate.query("SELECT * FROM movie WHERE name=?", new Object[] { name }, new BeanPropertyRowMapper<Movie>(Movie.class));
     }
+
+    @Override
+    public List<Movie> selectAllMovie() {
+        return jdbcTemplate.query("SELECT * FROM movie", new BeanPropertyRowMapper<Movie>(Movie.class));
+    }
+
+    @Override
+    public void insertMovie(int id, String name, double revenue) {
+        String sql = "insert into movie value(?,?,?)";
+        int rows = jdbcTemplate.update(sql, id, name, revenue);
+        System.out.println("插入行数：" + rows);
+    }
+
+//    @Override
+//    public void updateMovie(int id, int newId, String newName, double newRevenue) {
+//        String sql = "insert into movie value(?,?,?)";
+//        int rows = jdbcTemplate.update(sql, id, name, revenue);
+//        System.out.println("插入行数：" + rows);
+//    }
 }
