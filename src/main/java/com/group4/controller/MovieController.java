@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/movies")
 @RestController
 public class MovieController {
@@ -26,13 +27,7 @@ public class MovieController {
                 result =movieService.selectByName(name);
             }
         } else {
-            if (fields.equals("name")) {
-                result = movieService.selectMovieName();
-            } else if (fields.equals("revenue")) {
-                result = movieService.selectMovieRevenue();
-            } else {
-                result = movieService.selectMovieNameRevenue();
-            }
+            result = movieService.selectByFields(fields);
         }
         return result;
     }
