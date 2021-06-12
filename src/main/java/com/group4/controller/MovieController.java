@@ -17,14 +17,14 @@ public class MovieController {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Movie> getMovie(HttpServletRequest request) {
-        String fields=request.getParameter("fields");
-        String name=request.getParameter("name");
+        String fields = request.getParameter("fields");
+        String name = request.getParameter("name");
         List<Movie> result = null;
         if (fields == null) {
             if (name == null) {
-                result =movieService.selectAllMovie();
+                result = movieService.selectAllMovie();
             } else {
-                result =movieService.selectByName(name);
+                result = movieService.selectByName(name);
             }
         } else {
             result = movieService.selectByFields(fields);
@@ -34,25 +34,25 @@ public class MovieController {
 
     @RequestMapping(method = RequestMethod.POST)
     public void insertMovie(HttpServletRequest request) {
-        String idString=request.getParameter("id");
-        String name=request.getParameter("name");
-        String revenueString=request.getParameter("revenue");
+        String idString = request.getParameter("id");
+        String name = request.getParameter("name");
+        String revenueString = request.getParameter("revenue");
 
         int id = Integer.valueOf(idString);
         double revenue = Double.valueOf(revenueString);
         movieService.insertMovie(id, name, revenue);
     }
 
-    @RequestMapping(value="/{id}",method = RequestMethod.PUT)
-    public void updateMovie(@PathVariable("id") int id,HttpServletRequest request) {
-        String newName=request.getParameter("name");
-        String newRevenueString=request.getParameter("revenue");
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public void updateMovie(@PathVariable("id") int id, HttpServletRequest request) {
+        String newName = request.getParameter("name");
+        String newRevenueString = request.getParameter("revenue");
         double newRevenue = Double.valueOf(newRevenueString);
         movieService.updateMovie(id, newName, newRevenue);
     }
 
-    @RequestMapping(value="/{id}",method = RequestMethod.DELETE)
-    public void deleteMovie(@PathVariable("id") int id,HttpServletRequest request) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteMovie(@PathVariable("id") int id, HttpServletRequest request) {
         movieService.deleteMovie(id);
     }
 }
