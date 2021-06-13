@@ -20,23 +20,17 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    public List<Movie> selectByFields(String fields) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("SELECT ");
+        stringBuilder.append(fields);
+        stringBuilder.append(" FROM movie");
+        return jdbcTemplate.query(stringBuilder.toString(), new BeanPropertyRowMapper<Movie>(Movie.class));
+    }
+
+    @Override
     public List<Movie> selectAllMovie() {
         return jdbcTemplate.query("SELECT * FROM movie", new BeanPropertyRowMapper<Movie>(Movie.class));
-    }
-
-    @Override
-    public List<Movie> selectMovieName() {
-        return jdbcTemplate.query("SELECT name FROM movie",new BeanPropertyRowMapper<Movie>(Movie.class));
-    }
-
-    @Override
-    public List<Movie> selectMovieRevenue(){
-        return jdbcTemplate.query("SELECT revenue FROM movie",new BeanPropertyRowMapper<Movie>(Movie.class));
-    }
-
-    @Override
-    public List<Movie> selectMovieNameRevenue() {
-        return jdbcTemplate.query("SELECT name,revenue FROM movie",new BeanPropertyRowMapper<Movie>(Movie.class));
     }
 
     @Override
