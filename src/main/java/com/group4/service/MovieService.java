@@ -1,6 +1,7 @@
 package com.group4.service;
 
 import com.group4.pojo.Movie;
+import com.group4.pojo.MovieJoin;
 
 import java.util.List;
 
@@ -11,4 +12,6 @@ public interface MovieService {
     public void insertMovie(int id, String name, double revenue);
     public void updateMovie(int id, String newName, double newRevenue);
     public void deleteMovie(int id);
+    public List<MovieJoin> selectMovieJoin();
+    public int selectMovieLowsNum();
 }

@@ -1,6 +1,7 @@
 package com.group4.controller;
 
 import com.group4.pojo.Movie;
+import com.group4.pojo.MovieJoin;
 import com.group4.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -54,5 +55,17 @@ public class MovieController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteMovie(@PathVariable("id") int id, HttpServletRequest request) {
         movieService.deleteMovie(id);
+    }
+
+    @RequestMapping(value = "/join")
+    public List<MovieJoin> getJoin(HttpServletRequest request) {
+        List<MovieJoin> result = movieService.selectMovieJoin();
+        return result;
+    }
+
+    @RequestMapping(value = "/rownum")
+    public int getMovieLowsNum(HttpServletRequest request) {
+        int result = movieService.selectMovieLowsNum();
+        return result;
     }
 }
