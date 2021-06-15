@@ -28,6 +28,4 @@ public class UserController {
         List<UserName> result = UserService.selectUserRatingAllMovie();
         return result;
     }
-
-
 }
